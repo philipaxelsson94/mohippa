@@ -1,0 +1,335 @@
+.app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff4775 50%, #c93b6e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+}
+
+.logo {
+  font-size: 44px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.logo-heart {
+  color: #fff;
+  margin-left: 4px;
+  display: inline-block;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.2); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 18px;
+  margin: 4px 0 18px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #fff, #ffe0ec);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.progress-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  margin: 8px 0 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  z-index: 1;
+  position: relative;
+}
+
+.card {
+  flex: 1;
+  max-width: 380px;
+  aspect-ratio: 3 / 4;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, opacity 0.5s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(255, 71, 117, 0.85) 0%, rgba(255, 71, 117, 0.2) 50%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 24px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pick-label {
+  background: white;
+  color: #ff4775;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.picked {
+  animation: pickAnim 0.6s forwards;
+}
+
+.card.rejected {
+  animation: rejectAnim 0.6s forwards;
+}
+
+@keyframes pickAnim {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08) rotate(-2deg); box-shadow: 0 0 0 6px #fff, 0 0 40px rgba(255, 255, 255, 0.8); }
+  100% { transform: scale(1.05); box-shadow: 0 0 0 6px #fff, 0 0 30px rgba(255, 255, 255, 0.6); }
+}
+
+@keyframes rejectAnim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.85) rotate(8deg) translateY(40px); opacity: 0; }
+}
+
+.vs-badge {
+  background: white;
+  color: #ff4775;
+  font-weight: 900;
+  font-size: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  letter-spacing: -1px;
+  border: 3px solid #ff4775;
+  z-index: 2;
+}
+
+.hint {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  margin-top: 32px;
+  font-weight: 500;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Match screen */
+.match-screen {
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.hearts {
+  font-size: 48px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 12px;
+}
+
+.hearts span {
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+.hearts span:nth-child(2) {
+  animation-delay: 0.3s;
+  font-size: 60px;
+}
+
+.hearts span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.match-screen h1 {
+  color: white;
+  font-size: 52px;
+  margin: 12px 0 24px;
+  font-weight: 800;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: -1px;
+}
+
+.winner-card {
+  width: 320px;
+  max-width: 80vw;
+  aspect-ratio: 3 / 4;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(255, 255, 255, 0.5);
+  animation: winnerReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes winnerReveal {
+  0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.winner-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.match-text {
+  color: white;
+  font-size: 17px;
+  margin: 28px 0 24px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.restart-btn {
+  background: white;
+  color: #ff4775;
+  border: none;
+  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.restart-btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.empty-state {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(135deg, #ff6b9d, #c93b6e);
+  padding: 20px;
+  text-align: center;
+}
+
+.empty-state code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+@media (max-width: 640px) {
+  .cards-container {
+    gap: 12px;
+  }
+  .vs-badge {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+  .logo {
+    font-size: 36px;
+  }
+  .match-screen h1 {
+    font-size: 38px;
+  }
+  .card {
+    border-radius: 18px;
+  }
+  .pick-label {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
