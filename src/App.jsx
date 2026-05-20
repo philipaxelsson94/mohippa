@@ -104,8 +104,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="logo">mohippa<span className="logo-heart">♥</span></h1>
-        <p className="tagline">Vem behåller du?</p>
+        <h1 className="logo">Vem väljer du</h1>
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
         </div>
