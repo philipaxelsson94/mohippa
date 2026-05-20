@@ -104,7 +104,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="logo">Vem väljer du</h1>
+        <h1 className="logo">Dejt roulette</h1>
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
         </div>
