@@ -44,6 +44,10 @@ function App() {
   }
 
   useEffect(() => {
+    allImages.forEach(({ src }) => {
+      const img = new Image()
+      img.src = src
+    })
     startGame()
   }, [])
 
